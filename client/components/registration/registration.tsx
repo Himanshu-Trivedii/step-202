@@ -424,27 +424,26 @@ export default function RegistrationStepperModal() {
                     }}
                   >
                     <div style={{ position: "relative" }}>
-                      {/* Fixed Add Column Button */}
-                      <div style={{
-                        position: "sticky",
-                        top: 0,
-                        right: 0,
-                        zIndex: 50,
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        marginBottom: "8px",
-                        backgroundColor: "white",
-                        paddingBottom: "4px",
-                        borderBottom: "1px solid #e5e7eb"
-                      }}>
-                        <Button variant="secondary" onClick={addColumn}>
-                          <Plus size={16} />
-                          Add Column
-                        </Button>
-                      </div>
-
                       {/* Scrollable Columns Container */}
                       <div style={{ maxHeight: "400px", overflowY: "auto", paddingRight: "8px" }}>
+                        {/* Fixed Add Column Button - positioned at top of scrollable area */}
+                        <div style={{
+                          position: "sticky",
+                          top: 0,
+                          zIndex: 50,
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          backgroundColor: "white",
+                          paddingTop: "0px",
+                          paddingBottom: "12px",
+                          marginBottom: "12px",
+                          borderBottom: "1px solid #e5e7eb"
+                        }}>
+                          <Button variant="secondary" onClick={addColumn}>
+                            <Plus size={16} />
+                            Add Column
+                          </Button>
+                        </div>
                         {columns.map((column, index) => (
                           <div key={column.id} style={{ marginBottom: "24px", padding: "20px", border: "1px solid #e5e7eb", borderRadius: "12px", backgroundColor: "#f9fafb" }}>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
