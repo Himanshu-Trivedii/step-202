@@ -24,9 +24,7 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
   onConfigChange,
   initialConfig = {},
   isEdit = false,
-  columnTypes = [],
-  isFilterExpanded = false,
-  onFilterToggle
+  columnTypes = []
 }) => {
   const [config, setConfig] = useState<ColumnConfig>({
     label: initialConfig?.label || '',
