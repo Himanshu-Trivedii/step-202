@@ -73,6 +73,7 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
           columnTypes={columnTypes}
           updateConfig={updateConfig}
           isEdit={((config?.columnName !== '') && isEdit)}
+          onFilterToggle={onFilterToggle}
         />
       ) : <ShimmerRow /> }
 
