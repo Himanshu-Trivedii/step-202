@@ -15,7 +15,6 @@ interface ColumnConfigRowProps {
   columnTypes: { label: string; value: string }[];
   updateConfig: (updates: Partial<ColumnConfig>) => void;
   isEdit: boolean;
-  onFilterToggle?: () => void;
 }
 
 export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
