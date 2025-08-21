@@ -1,20 +1,21 @@
-import React from 'react';
+import React from "react";
 import {
   ResponsiveFormRow,
   ResponsiveFormGroup,
   ResponsiveFormGroupToggle,
   FormLabel,
   FormInput,
-  FormSelect
-} from './style';
-import { Toggle } from './toggle';
-import { ColumnConfig } from './types';
+  FormSelect,
+} from "./style";
+import { Toggle } from "./toggle";
+import { ColumnConfig } from "./types";
 
 interface ColumnConfigRowProps {
   config: ColumnConfig;
   columnTypes: { label: string; value: string }[];
   updateConfig: (updates: Partial<ColumnConfig>) => void;
   isEdit: boolean;
+  columnId: string;
 }
 
 export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
@@ -22,27 +23,30 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
   columnTypes,
   updateConfig,
   isEdit,
+  columnId,
 }) => {
   return (
     <ResponsiveFormRow>
       <ResponsiveFormGroup>
-        <FormLabel htmlFor='column-name'>Column Name</FormLabel>
+        <FormLabel htmlFor={`column-name-${columnId}`}>Column Name</FormLabel>
         <FormInput
-          id='column-name'
-          type='text'
-          value={(config?.label || '')}
+          id={`column-name-${columnId}`}
+          type="text"
+          value={config?.label || ""}
           onChange={(e) => updateConfig({ label: e.target.value })}
           placeholder="Enter column name"
         />
       </ResponsiveFormGroup>
 
       <ResponsiveFormGroup>
-        <FormLabel htmlFor='column-type'>Column Type</FormLabel>
+        <FormLabel htmlFor={`column-type-${columnId}`}>Column Type</FormLabel>
         <FormSelect
-          id='column-type'
-          value={(config?.columnType || '')}
+          id={`column-type-${columnId}`}
+          value={config?.columnType || ""}
           onChange={(e) =>
-            updateConfig({ columnType: e.target.value as ColumnConfig['columnType'] })
+            updateConfig({
+              columnType: e.target.value as ColumnConfig["columnType"],
+            })
           }
           disabled={isEdit}
         >
@@ -56,13 +60,14 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
 
       <ResponsiveFormGroupToggle>
         <Toggle
-          id='is-filterable'
-          checked={(config?.filterable || false)}
+          id={`is-filterable-${columnId}`}
+          checked={config?.filterable || false}
           onChange={(checked) => {
             if (!checked) {
-              updateConfig({ filterable: checked, filterValues: [] })
+              updateConfig({ filterable: checked, filterValues: [] });
+            } else {
+              updateConfig({ filterable: checked });
             }
-            updateConfig({ filterable: checked })
           }}
           label="Filterable"
         />
@@ -70,8 +75,8 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
 
       <ResponsiveFormGroupToggle>
         <Toggle
-          id='is-hidden'
-          checked={(config?.hidden || false)}
+          id={`is-hidden-${columnId}`}
+          checked={config?.hidden || false}
           onChange={(checked) => updateConfig({ hidden: checked })}
           label="Hidden"
         />
@@ -79,8 +84,8 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
 
       <ResponsiveFormGroupToggle>
         <Toggle
-          id='is-searchable'
-          checked={(config?.searchable || false)}
+          id={`is-searchable-${columnId}`}
+          checked={config?.searchable || false}
           onChange={(checked) => updateConfig({ searchable: checked })}
           label="Searchable"
         />
