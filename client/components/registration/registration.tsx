@@ -46,15 +46,8 @@ import {
 import { ColumnConfigForm } from "../column-config";
 import { ColumnConfig, LabelValue } from "../column-config/types";
 
-interface ColumnDefinition {
+interface ColumnDefinition extends ColumnConfig {
   id: string;
-  placeholder: string;
-  name: string;
-  dataType: string;
-  hide: boolean;
-  filterColumns: boolean;
-  searchable: boolean;
-  filterValues: string[];
 }
 
 interface RegistrationStepperModalRequest {
