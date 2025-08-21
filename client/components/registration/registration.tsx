@@ -189,7 +189,7 @@ export default function RegistrationStepperModal() {
     organizationData.organizationId &&
     organizationData.tablePrefix;
   const isStep2Valid =
-    columns.length > 0 && columns.every((col) => col.name && col.dataType);
+    columns.length > 0 && columns.every((col) => col.label && col.columnType);
 
   return (
     <Overlay>
