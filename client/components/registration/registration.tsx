@@ -69,13 +69,15 @@ interface LoginResp {
 }
 
 // Mock API function - replace with actual import
-const srGetRegistrationData = async (payload: RegistrationStepperModalRequest): Promise<LoginResp> => {
+const srGetRegistrationData = async (
+  payload: RegistrationStepperModalRequest,
+): Promise<LoginResp> => {
   // Simulate API call
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         respMessage: "Registration successful!",
-        businesses: [{ id: 1, name: payload.businessName }]
+        businesses: [{ id: 1, name: payload.businessName }],
       });
     }, 1000);
   });
@@ -83,8 +85,10 @@ const srGetRegistrationData = async (payload: RegistrationStepperModalRequest): 
 
 // Mock business store functions - replace with actual store imports
 const useBusinessStore = () => ({
-  setSelectedBusiness: (business: any) => console.log("Selected business:", business),
-  setBusinesses: (businesses: any[]) => console.log("Set businesses:", businesses),
+  setSelectedBusiness: (business: any) =>
+    console.log("Selected business:", business),
+  setBusinesses: (businesses: any[]) =>
+    console.log("Set businesses:", businesses),
 });
 
 // Mock router - replace with actual router import
@@ -92,7 +96,7 @@ const useRouter = () => ({
   push: (path: string) => {
     console.log("Navigate to:", path);
     // In a real app, this would navigate to the home page
-  }
+  },
 });
 
 interface OrganizationData {
@@ -199,7 +203,6 @@ export default function RegistrationStepperModal() {
     },
   ]);
 
-
   const steps = [
     {
       id: 1,
@@ -224,7 +227,7 @@ export default function RegistrationStepperModal() {
 
   const updateOrganizationData = (
     field: keyof OrganizationData,
-    value: string
+    value: string,
   ) => {
     setOrganizationData((prev) => ({ ...prev, [field]: value }));
   };
@@ -245,7 +248,7 @@ export default function RegistrationStepperModal() {
 
   const updateColumn = (id: string, updates: Partial<ColumnConfig>) => {
     setColumns(
-      columns.map((col) => (col.id === id ? { ...col, ...updates } : col))
+      columns.map((col) => (col.id === id ? { ...col, ...updates } : col)),
     );
   };
 
@@ -290,7 +293,7 @@ export default function RegistrationStepperModal() {
         setBusinesses(resp?.businesses);
 
         setTimeout(() => {
-          router.push('/home');
+          router.push("/home");
         }, 1000);
       })
       .catch((err: any) => toast.error(err.errorMsg));
@@ -303,343 +306,370 @@ export default function RegistrationStepperModal() {
 
   const isStep2Valid =
     columns.length > 0 &&
-    columns.every((col) => col.label && col.label.trim() !== '' && col.columnType && col.columnType.trim() !== '');
+    columns.every(
+      (col) =>
+        col.label &&
+        col.label.trim() !== "" &&
+        col.columnType &&
+        col.columnType.trim() !== "",
+    );
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: enhancedScrollStyle }} />
       <Overlay>
         <ModalContainer className="modal-container-fixed">
-        {isCompleted ? (
-          <CompletionContainer>
-            <CompletionIcon>
-              <CheckCircle size={32} color="#16a34a" />
-            </CompletionIcon>
-            <CompletionTitle>Table Created!</CompletionTitle>
-            <CompletionText>
-              Your table configuration has been saved successfully.
-            </CompletionText>
-          </CompletionContainer>
-        ) : (
-          <>
-            {/* Header */}
-            <ModalHeader>
-              <ModalHeaderContent>
-                <ModalTitle>{steps[currentStep - 1].title}</ModalTitle>
-                <ModalSubtitle>
-                  {steps[currentStep - 1].description}
-                </ModalSubtitle>
-              </ModalHeaderContent>
-              <ModalBadge>
-                Step {currentStep} of {steps.length}
-              </ModalBadge>
-            </ModalHeader>
+          {isCompleted ? (
+            <CompletionContainer>
+              <CompletionIcon>
+                <CheckCircle size={32} color="#16a34a" />
+              </CompletionIcon>
+              <CompletionTitle>Table Created!</CompletionTitle>
+              <CompletionText>
+                Your table configuration has been saved successfully.
+              </CompletionText>
+            </CompletionContainer>
+          ) : (
+            <>
+              {/* Header */}
+              <ModalHeader>
+                <ModalHeaderContent>
+                  <ModalTitle>{steps[currentStep - 1].title}</ModalTitle>
+                  <ModalSubtitle>
+                    {steps[currentStep - 1].description}
+                  </ModalSubtitle>
+                </ModalHeaderContent>
+                <ModalBadge>
+                  Step {currentStep} of {steps.length}
+                </ModalBadge>
+              </ModalHeader>
 
-            {/* Progress Bar */}
-            <ProgressBar>
-              <ProgressContainer>
-                {steps.map((step, index) => {
-                  const isActive = step.id === currentStep;
-                  const isCompleted = step.id < currentStep;
-                  const StepIcon = step.icon;
+              {/* Progress Bar */}
+              <ProgressBar>
+                <ProgressContainer>
+                  {steps.map((step, index) => {
+                    const isActive = step.id === currentStep;
+                    const isCompleted = step.id < currentStep;
+                    const StepIcon = step.icon;
 
-                  return (
-                    <React.Fragment key={step.id}>
-                      <StepContainer>
-                        <StepCircle
-                          isActive={isActive}
-                          isCompleted={isCompleted}
-                        >
-                          {isCompleted ? (
-                            <Check size={20} />
-                          ) : (
-                            <StepIcon size={20} />
-                          )}
-                        </StepCircle>
-                        <StepInfo>
-                          <StepTitle
+                    return (
+                      <React.Fragment key={step.id}>
+                        <StepContainer>
+                          <StepCircle
                             isActive={isActive}
                             isCompleted={isCompleted}
                           >
-                            {step.title}
-                          </StepTitle>
-                          <StepDescription>{step.description}</StepDescription>
-                        </StepInfo>
-                      </StepContainer>
+                            {isCompleted ? (
+                              <Check size={20} />
+                            ) : (
+                              <StepIcon size={20} />
+                            )}
+                          </StepCircle>
+                          <StepInfo>
+                            <StepTitle
+                              isActive={isActive}
+                              isCompleted={isCompleted}
+                            >
+                              {step.title}
+                            </StepTitle>
+                            <StepDescription>
+                              {step.description}
+                            </StepDescription>
+                          </StepInfo>
+                        </StepContainer>
 
-                      {index < steps.length - 1 && (
-                        <ProgressLine isCompleted={currentStep > step.id} />
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </ProgressContainer>
-            </ProgressBar>
+                        {index < steps.length - 1 && (
+                          <ProgressLine isCompleted={currentStep > step.id} />
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </ProgressContainer>
+              </ProgressBar>
 
-            {/* Content */}
-            <Content>
-              <AnimatePresence mode="wait" custom={direction}>
-                {currentStep === 1 && (
-                  <motion.div
-                    key="step1"
-                    custom={direction}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    variants={{
-                      enter: (direction: number) => ({
-                        x: direction > 0 ? 300 : -300,
-                        opacity: 0,
-                      }),
-                      center: {
-                        zIndex: 1,
-                        x: 0,
-                        opacity: 1,
-                      },
-                      exit: (direction: number) => ({
-                        zIndex: 0,
-                        x: direction < 0 ? 300 : -300,
-                        opacity: 0,
-                      }),
-                    }}
-                    transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 },
-                    }}
-                  >
-                    <FormContainer>
-                      <FormGroup>
-                        <Label htmlFor="organizationName">
-                          Organization Name *
-                        </Label>
-                        <Input
-                          id="organizationName"
-                          value={organizationData.organizationName}
-                          onChange={(e) =>
-                            updateOrganizationData(
-                              "organizationName",
-                              e.target.value
-                            )
-                          }
-                          placeholder="Enter your organization name"
-                        />
-                      </FormGroup>
-
-                      <FormGroup>
-                        <Label htmlFor="organizationId">
-                          Organization ID *
-                        </Label>
-                        <Input
-                          id="organizationId"
-                          value={organizationData.organizationId}
-                          onChange={(e) =>
-                            updateOrganizationData(
-                              "organizationId",
-                              e.target.value
-                            )
-                          }
-                          placeholder="Enter organization ID (e.g., org_12345)"
-                        />
-                        <HelpText>
-                          This will be used as a unique identifier for your
-                          organization
-                        </HelpText>
-                      </FormGroup>
-
-                      <FormGroup>
-                        <Label htmlFor="tablePrefix">Table Prefix *</Label>
-                        <Input
-                          id="tablePrefix"
-                          value={organizationData.tablePrefix}
-                          onChange={(e) =>
-                            updateOrganizationData(
-                              "tablePrefix",
-                              e.target.value
-                            )
-                          }
-                          placeholder="Enter table prefix (e.g., usr_)"
-                        />
-                        <HelpText>
-                          This prefix will be added to all table names for
-                          organization
-                        </HelpText>
-                      </FormGroup>
-                    </FormContainer>
-                  </motion.div>
-                )}
-
-                {currentStep === 2 && (
-                  <motion.div
-                    key="step2"
-                    custom={direction}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    variants={{
-                      enter: (direction: number) => ({
-                        x: direction > 0 ? 300 : -300,
-                        opacity: 0,
-                      }),
-                      center: {
-                        zIndex: 1,
-                        x: 0,
-                        opacity: 1,
-                      },
-                      exit: (direction: number) => ({
-                        zIndex: 0,
-                        x: direction < 0 ? 300 : -300,
-                        opacity: 0,
-                      }),
-                    }}
-                    transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 },
-                    }}
-                  >
-                    <div style={{ position: "relative" }}>
-                      {/* Fixed Add Column Button - Outside scrollable area */}
-                      <div style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        padding: "0 0 12px 0",
-                        marginBottom: "8px",
-                        borderBottom: "1px solid #e2e8f0"
-                      }}>
-                        <Button variant="secondary" onClick={addColumn}>
-                          <Plus size={16} />
-                          Add Column
-                        </Button>
-                      </div>
-
-                      {/* Enhanced Scrollable Columns Container */}
-                      <div style={{
-                        maxHeight: "400px",
-                        overflowY: "auto",
-                        padding: "16px 8px 0 0",
-                        background: "linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)",
-                        borderRadius: "8px",
-                        border: "1px solid #f1f5f9"
+              {/* Content */}
+              <Content>
+                <AnimatePresence mode="wait" custom={direction}>
+                  {currentStep === 1 && (
+                    <motion.div
+                      key="step1"
+                      custom={direction}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      variants={{
+                        enter: (direction: number) => ({
+                          x: direction > 0 ? 300 : -300,
+                          opacity: 0,
+                        }),
+                        center: {
+                          zIndex: 1,
+                          x: 0,
+                          opacity: 1,
+                        },
+                        exit: (direction: number) => ({
+                          zIndex: 0,
+                          x: direction < 0 ? 300 : -300,
+                          opacity: 0,
+                        }),
                       }}
-                      className="smooth-scroll-container"
-                      >
-                        {columns.map((column, index) => (
-                          <div key={column.id}
-                               className="column-card animate-fade-in"
-                               style={{
-                                 marginBottom: index === columns.length - 1 ? "0px" : "20px",
-                                 padding: "24px",
-                                 border: "1px solid #e2e8f0",
-                                 borderRadius: "16px",
-                                 backgroundColor: "#ffffff",
-                                 boxShadow: "0 2px 8px -2px rgba(0, 0, 0, 0.08)",
-                                 position: "relative"
-                               }}>
-                            <div style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                              marginBottom: "20px",
-                              paddingBottom: "12px",
-                              borderBottom: "1px solid #f1f5f9"
-                            }}>
-                              <h3 style={{
-                                margin: 0,
-                                fontSize: "18px",
-                                fontWeight: "600",
-                                color: "#1e293b",
-                                background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent"
-                              }}>
-                                Column {index + 1}
-                              </h3>
-                              {columns.length > 1 && (
-                                <button
-                                  onClick={() => removeColumn(column.id)}
+                      transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                      }}
+                    >
+                      <FormContainer>
+                        <FormGroup>
+                          <Label htmlFor="organizationName">
+                            Organization Name *
+                          </Label>
+                          <Input
+                            id="organizationName"
+                            value={organizationData.organizationName}
+                            onChange={(e) =>
+                              updateOrganizationData(
+                                "organizationName",
+                                e.target.value,
+                              )
+                            }
+                            placeholder="Enter your organization name"
+                          />
+                        </FormGroup>
+
+                        <FormGroup>
+                          <Label htmlFor="organizationId">
+                            Organization ID *
+                          </Label>
+                          <Input
+                            id="organizationId"
+                            value={organizationData.organizationId}
+                            onChange={(e) =>
+                              updateOrganizationData(
+                                "organizationId",
+                                e.target.value,
+                              )
+                            }
+                            placeholder="Enter organization ID (e.g., org_12345)"
+                          />
+                          <HelpText>
+                            This will be used as a unique identifier for your
+                            organization
+                          </HelpText>
+                        </FormGroup>
+
+                        <FormGroup>
+                          <Label htmlFor="tablePrefix">Table Prefix *</Label>
+                          <Input
+                            id="tablePrefix"
+                            value={organizationData.tablePrefix}
+                            onChange={(e) =>
+                              updateOrganizationData(
+                                "tablePrefix",
+                                e.target.value,
+                              )
+                            }
+                            placeholder="Enter table prefix (e.g., usr_)"
+                          />
+                          <HelpText>
+                            This prefix will be added to all table names for
+                            organization
+                          </HelpText>
+                        </FormGroup>
+                      </FormContainer>
+                    </motion.div>
+                  )}
+
+                  {currentStep === 2 && (
+                    <motion.div
+                      key="step2"
+                      custom={direction}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      variants={{
+                        enter: (direction: number) => ({
+                          x: direction > 0 ? 300 : -300,
+                          opacity: 0,
+                        }),
+                        center: {
+                          zIndex: 1,
+                          x: 0,
+                          opacity: 1,
+                        },
+                        exit: (direction: number) => ({
+                          zIndex: 0,
+                          x: direction < 0 ? 300 : -300,
+                          opacity: 0,
+                        }),
+                      }}
+                      transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                      }}
+                    >
+                      <div style={{ position: "relative" }}>
+                        {/* Fixed Add Column Button - Outside scrollable area */}
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            padding: "0 0 12px 0",
+                            marginBottom: "8px",
+                            borderBottom: "1px solid #e2e8f0",
+                          }}
+                        >
+                          <Button variant="secondary" onClick={addColumn}>
+                            <Plus size={16} />
+                            Add Column
+                          </Button>
+                        </div>
+
+                        {/* Enhanced Scrollable Columns Container */}
+                        <div
+                          style={{
+                            maxHeight: "400px",
+                            overflowY: "auto",
+                            padding: "16px 8px 0 0",
+                            background:
+                              "linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)",
+                            borderRadius: "8px",
+                            border: "1px solid #f1f5f9",
+                          }}
+                          className="smooth-scroll-container"
+                        >
+                          {columns.map((column, index) => (
+                            <div
+                              key={column.id}
+                              className="column-card animate-fade-in"
+                              style={{
+                                marginBottom:
+                                  index === columns.length - 1 ? "0px" : "20px",
+                                padding: "24px",
+                                border: "1px solid #e2e8f0",
+                                borderRadius: "16px",
+                                backgroundColor: "#ffffff",
+                                boxShadow: "0 2px 8px -2px rgba(0, 0, 0, 0.08)",
+                                position: "relative",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  marginBottom: "20px",
+                                  paddingBottom: "12px",
+                                  borderBottom: "1px solid #f1f5f9",
+                                }}
+                              >
+                                <h3
                                   style={{
-                                    background: "linear-gradient(135deg, #fee2e2, #fef2f2)",
-                                    border: "1px solid #fecaca",
-                                    color: "#dc2626",
-                                    cursor: "pointer",
-                                    padding: "8px",
-                                    borderRadius: "8px",
-                                    transition: "all 0.2s ease",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                  }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = "linear-gradient(135deg, #fecaca, #fee2e2)";
-                                    e.currentTarget.style.transform = "scale(1.05)";
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = "linear-gradient(135deg, #fee2e2, #fef2f2)";
-                                    e.currentTarget.style.transform = "scale(1)";
+                                    margin: 0,
+                                    fontSize: "18px",
+                                    fontWeight: "600",
+                                    color: "#1e293b",
+                                    background:
+                                      "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
                                   }}
                                 >
-                                  <X size={16} />
-                                </button>
-                              )}
+                                  Column {index + 1}
+                                </h3>
+                                {columns.length > 1 && (
+                                  <button
+                                    onClick={() => removeColumn(column.id)}
+                                    style={{
+                                      background:
+                                        "linear-gradient(135deg, #fee2e2, #fef2f2)",
+                                      border: "1px solid #fecaca",
+                                      color: "#dc2626",
+                                      cursor: "pointer",
+                                      padding: "8px",
+                                      borderRadius: "8px",
+                                      transition: "all 0.2s ease",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.background =
+                                        "linear-gradient(135deg, #fecaca, #fee2e2)";
+                                      e.currentTarget.style.transform =
+                                        "scale(1.05)";
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.background =
+                                        "linear-gradient(135deg, #fee2e2, #fef2f2)";
+                                      e.currentTarget.style.transform =
+                                        "scale(1)";
+                                    }}
+                                  >
+                                    <X size={16} />
+                                  </button>
+                                )}
+                              </div>
+                              <ColumnConfigForm
+                                initialConfig={{
+                                  label: column.label,
+                                  columnName: column.columnName,
+                                  columnType: column.columnType,
+                                  filterable: column.filterable,
+                                  hidden: column.hidden,
+                                  searchable: column.searchable,
+                                  filterValues: column.filterValues,
+                                }}
+                                columnTypes={columnTypes}
+                                onConfigChange={(config) =>
+                                  updateColumn(column.id, config)
+                                }
+                                isEdit={false}
+                                columnId={column.id}
+                              />
                             </div>
-                            <ColumnConfigForm
-                              initialConfig={{
-                                label: column.label,
-                                columnName: column.columnName,
-                                columnType: column.columnType,
-                                filterable: column.filterable,
-                                hidden: column.hidden,
-                                searchable: column.searchable,
-                                filterValues: column.filterValues,
-                              }}
-                              columnTypes={columnTypes}
-                              onConfigChange={(config) => updateColumn(column.id, config)}
-                              isEdit={false}
-                              columnId={column.id}
-                            />
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Content>
+
+              {/* Footer */}
+              <Footer>
+                <Button
+                  variant="ghost"
+                  onClick={handleBack}
+                  disabled={currentStep === 1}
+                >
+                  <ArrowLeft size={16} />
+                  Back
+                </Button>
+
+                {currentStep < steps.length ? (
+                  <Button
+                    variant="primary"
+                    onClick={handleNext}
+                    disabled={currentStep === 1 ? !isStep1Valid : !isStep2Valid}
+                  >
+                    Next
+                    <ArrowRight size={16} />
+                  </Button>
+                ) : (
+                  <Button
+                    variant="primary"
+                    onClick={triggerRegistrationStepperModal}
+                    disabled={!isStep2Valid}
+                  >
+                    Create Table
+                    <Check size={16} />
+                  </Button>
                 )}
-              </AnimatePresence>
-            </Content>
-
-            {/* Footer */}
-            <Footer>
-              <Button
-                variant="ghost"
-                onClick={handleBack}
-                disabled={currentStep === 1}
-              >
-                <ArrowLeft size={16} />
-                Back
-              </Button>
-
-              {currentStep < steps.length ? (
-                <Button
-                  variant="primary"
-                  onClick={handleNext}
-                  disabled={currentStep === 1 ? !isStep1Valid : !isStep2Valid}
-                >
-                  Next
-                  <ArrowRight size={16} />
-                </Button>
-              ) : (
-                <Button
-                  variant="primary"
-                  onClick={triggerRegistrationStepperModal}
-                  disabled={!isStep2Valid}
-                >
-                  Create Table
-                  <Check size={16} />
-                </Button>
-              )}
-            </Footer>
-          </>
-        )}
-      </ModalContainer>
-    </Overlay>
+              </Footer>
+            </>
+          )}
+        </ModalContainer>
+      </Overlay>
     </>
   );
 }

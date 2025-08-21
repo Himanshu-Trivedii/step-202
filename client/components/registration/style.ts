@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 // Registration Modal Styles
 export const Overlay = styled.div`
@@ -99,7 +99,10 @@ export const StepContainer = styled.div`
   align-items: center;
 `;
 
-export const StepCircle = styled.div<{ isActive: boolean; isCompleted: boolean }>`
+export const StepCircle = styled.div<{
+  isActive: boolean;
+  isCompleted: boolean;
+}>`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -111,46 +114,61 @@ export const StepCircle = styled.div<{ isActive: boolean; isCompleted: boolean }
   position: relative;
   overflow: hidden;
 
-  ${props => props.isCompleted && css`
-    background-color: #2563eb;
-    border-color: #2563eb;
-    color: white;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-  `}
+  ${(props) =>
+    props.isCompleted &&
+    css`
+      background-color: #2563eb;
+      border-color: #2563eb;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    `}
 
-  ${props => props.isActive && !props.isCompleted && css`
-    background-color: #eff6ff;
-    border-color: #2563eb;
-    color: #2563eb;
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-  `}
+  ${(props) =>
+    props.isActive &&
+    !props.isCompleted &&
+    css`
+      background-color: #eff6ff;
+      border-color: #2563eb;
+      color: #2563eb;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    `}
 
-  ${props => !props.isActive && !props.isCompleted && css`
-    background-color: white;
-    border-color: #d1d5db;
-    color: #9ca3af;
-    transform: scale(1);
-  `}
+  ${(props) =>
+    !props.isActive &&
+    !props.isCompleted &&
+    css`
+      background-color: white;
+      border-color: #d1d5db;
+      color: #9ca3af;
+      transform: scale(1);
+    `}
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 70%
+    );
     transform: translateX(-100%);
     transition: transform 0.6s;
   }
 
-  ${props => (props.isActive || props.isCompleted) && css`
-    &::before {
-      transform: translateX(100%);
-    }
-  `}
+  ${(props) =>
+    (props.isActive || props.isCompleted) &&
+    css`
+      &::before {
+        transform: translateX(100%);
+      }
+    `}
 `;
 
 export const StepInfo = styled.div`
@@ -162,7 +180,8 @@ export const StepTitle = styled.p<{ isActive: boolean; isCompleted: boolean }>`
   font-size: 0.875rem;
   font-weight: 500;
   margin: 0;
-  color: ${props => (props.isActive || props.isCompleted) ? '#111827' : '#6b7280'};
+  color: ${(props) =>
+    props.isActive || props.isCompleted ? "#111827" : "#6b7280"};
 `;
 
 export const StepDescription = styled.p`
@@ -183,12 +202,12 @@ export const ProgressLine = styled.div<{ isCompleted: boolean }>`
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    width: ${props => props.isCompleted ? '100%' : '0%'};
+    width: ${(props) => (props.isCompleted ? "100%" : "0%")};
     background-color: #2563eb;
     border-radius: 2px;
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -267,7 +286,10 @@ export const HelpText = styled.p`
   margin: 0;
 `;
 
-export const Button = styled.button<{ variant?: 'primary' | 'secondary' | 'ghost'; disabled?: boolean }>`
+export const Button = styled.button<{
+  variant?: "primary" | "secondary" | "ghost";
+  disabled?: boolean;
+}>`
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
@@ -281,54 +303,62 @@ export const Button = styled.button<{ variant?: 'primary' | 'secondary' | 'ghost
   position: relative;
   overflow: hidden;
 
-  ${props => props.variant === 'primary' && css`
-    background-color: #2563eb;
-    color: white;
+  ${(props) =>
+    props.variant === "primary" &&
+    css`
+      background-color: #2563eb;
+      color: white;
 
-    &:hover:not(:disabled) {
-      background-color: #1d4ed8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-    }
+      &:hover:not(:disabled) {
+        background-color: #1d4ed8;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+      }
 
-    &:active:not(:disabled) {
-      transform: translateY(0);
-    }
-  `}
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+    `}
 
-  ${props => props.variant === 'secondary' && css`
-    background-color: white;
-    color: #374151;
-    border: 1px solid #d1d5db;
+  ${(props) =>
+    props.variant === "secondary" &&
+    css`
+      background-color: white;
+      color: #374151;
+      border: 1px solid #d1d5db;
 
-    &:hover:not(:disabled) {
-      background-color: #f9fafb;
-      border-color: #9ca3af;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+      &:hover:not(:disabled) {
+        background-color: #f9fafb;
+        border-color: #9ca3af;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
 
-    &:active:not(:disabled) {
-      transform: translateY(0);
-    }
-  `}
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+    `}
 
-  ${props => props.variant === 'ghost' && css`
-    background: none;
-    color: #6b7280;
+  ${(props) =>
+    props.variant === "ghost" &&
+    css`
+      background: none;
+      color: #6b7280;
 
-    &:hover:not(:disabled) {
-      color: #111827;
-      background-color: rgba(0, 0, 0, 0.05);
-    }
-  `}
+      &:hover:not(:disabled) {
+        color: #111827;
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    `}
 
-  ${props => props.disabled && css`
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none !important;
-    box-shadow: none !important;
-  `}
+  ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    `}
 `;
 
 export const Footer = styled.div`
