@@ -167,10 +167,10 @@ export default function RegistrationStepperModal() {
       bussId: organizationData.organizationId,
       bussPrefix: organizationData.tablePrefix,
       fields: columns.map((col) => ({
-        label: col.name,
-        columnType: col.dataType.toUpperCase(),
-        filterable: col.filterColumns,
-        hidden: col.hide,
+        label: col.label,
+        columnType: col.columnType.toUpperCase(),
+        filterable: col.filterable,
+        hidden: col.hidden,
       })),
     };
 
