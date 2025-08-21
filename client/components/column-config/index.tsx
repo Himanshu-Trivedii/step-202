@@ -77,7 +77,7 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
         />
       ) : <ShimmerRow /> }
 
-      {(config?.filterable || false) && isFilterExpanded && (
+      {(config?.filterable || false) && (
         <FilterSection>
           <FilterInputGroup>
             <FormLabel htmlFor='filter-input'>Filter Values</FormLabel>
