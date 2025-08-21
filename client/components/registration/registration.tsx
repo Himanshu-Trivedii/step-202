@@ -102,16 +102,36 @@ interface OrganizationData {
 }
 
 export default function RegistrationStepperModal() {
-  // Enhanced CSS for smooth scrolling without visible scrollbar
+  // Enhanced CSS for smooth scrolling with internal scrollbar only
   const enhancedScrollStyle = `
+    /* Hide external scrollbars */
+    body {
+      overflow: hidden;
+    }
+
+    /* Internal scrollbar styling */
     .smooth-scroll-container {
       scroll-behavior: smooth;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: thin;
+      scrollbar-color: #e5e7eb transparent;
     }
 
     .smooth-scroll-container::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      width: 6px;
+    }
+
+    .smooth-scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .smooth-scroll-container::-webkit-scrollbar-thumb {
+      background: #e5e7eb;
+      border-radius: 3px;
+      transition: background 0.2s ease;
+    }
+
+    .smooth-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #d1d5db;
     }
 
     .column-card {
@@ -472,9 +492,9 @@ export default function RegistrationStepperModal() {
                     <div style={{ position: "relative" }}>
                       {/* Enhanced Scrollable Columns Container */}
                       <div style={{
-                        maxHeight: "450px",
+                        maxHeight: "400px",
                         overflowY: "auto",
-                        padding: "0 12px 8px 0",
+                        padding: "0 8px 8px 0",
                         background: "linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)",
                         borderRadius: "8px",
                         border: "1px solid #f1f5f9"
