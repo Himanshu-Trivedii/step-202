@@ -102,11 +102,18 @@ interface OrganizationData {
 }
 
 export default function RegistrationStepperModal() {
-  // Enhanced CSS for smooth scrolling with internal scrollbar only
+  // Enhanced CSS for synchronized scrolling - only internal scrollbar
   const enhancedScrollStyle = `
-    /* Hide external scrollbars */
+    /* Prevent external page scrolling */
     body {
-      overflow: hidden;
+      overflow: hidden !important;
+    }
+
+    /* Ensure modal container doesn't overflow */
+    .modal-container-fixed {
+      height: 90vh !important;
+      max-height: 90vh !important;
+      overflow: hidden !important;
     }
 
     /* Internal scrollbar styling */
