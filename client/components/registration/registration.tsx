@@ -242,7 +242,9 @@ export default function RegistrationStepperModal() {
     columns.every((col) => col.label && col.label.trim() !== '' && col.columnType && col.columnType.trim() !== '');
 
   return (
-    <Overlay>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: hideScrollbarStyle }} />
+      <Overlay>
       <ModalContainer>
         {isCompleted ? (
           <CompletionContainer>
@@ -540,5 +542,6 @@ export default function RegistrationStepperModal() {
         )}
       </ModalContainer>
     </Overlay>
+    </>
   );
 }
