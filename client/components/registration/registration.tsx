@@ -102,30 +102,16 @@ interface OrganizationData {
 }
 
 export default function RegistrationStepperModal() {
-  // Enhanced CSS for smooth scrolling and attractive design
+  // Enhanced CSS for smooth scrolling without visible scrollbar
   const enhancedScrollStyle = `
     .smooth-scroll-container {
       scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: #e5e7eb transparent;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
     }
 
     .smooth-scroll-container::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .smooth-scroll-container::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .smooth-scroll-container::-webkit-scrollbar-thumb {
-      background: #e5e7eb;
-      border-radius: 2px;
-      transition: background 0.2s ease;
-    }
-
-    .smooth-scroll-container::-webkit-scrollbar-thumb:hover {
-      background: #d1d5db;
+      display: none; /* Chrome, Safari, Opera */
     }
 
     .column-card {
