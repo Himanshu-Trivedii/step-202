@@ -18,8 +18,6 @@ interface ColumnConfigFormProps {
   initialConfig?: Partial<ColumnConfig>;
   isEdit?: boolean;
   columnTypes?: LabelValue[];
-  isFilterExpanded?: boolean;
-  onFilterToggle?: () => void;
 }
 
 export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
