@@ -429,7 +429,7 @@ export default function RegistrationStepperModal() {
                         position: "sticky",
                         top: 0,
                         right: 0,
-                        zIndex: 10,
+                        zIndex: 50,
                         display: "flex",
                         justifyContent: "flex-end",
                         marginBottom: "16px",
