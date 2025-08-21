@@ -135,13 +135,9 @@ export default function RegistrationStepperModal() {
     setColumns([...columns, newColumn]);
   };
 
-  const updateColumn = (
-    id: string,
-    field: keyof ColumnDefinition,
-    value: string | boolean
-  ) => {
+  const updateColumn = (id: string, updates: Partial<ColumnConfig>) => {
     setColumns(
-      columns.map((col) => (col.id === id ? { ...col, [field]: value } : col))
+      columns.map((col) => (col.id === id ? { ...col, ...updates } : col))
     );
   };
 
