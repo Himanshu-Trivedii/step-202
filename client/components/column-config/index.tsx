@@ -18,13 +18,17 @@ interface ColumnConfigFormProps {
   initialConfig?: Partial<ColumnConfig>;
   isEdit?: boolean;
   columnTypes?: LabelValue[];
+  isFilterExpanded?: boolean;
+  onFilterToggle?: () => void;
 }
 
 export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
   onConfigChange,
   initialConfig = {},
   isEdit = false,
-  columnTypes = []
+  columnTypes = [],
+  isFilterExpanded = false,
+  onFilterToggle
 }) => {
   const [config, setConfig] = useState<ColumnConfig>({
     label: initialConfig?.label || '',
@@ -72,7 +76,7 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
         />
       ) : <ShimmerRow /> }
 
-      {(config?.filterable || false) && (
+      {(config?.filterable || false) && isFilterExpanded && (
         <FilterSection>
           <FilterInputGroup>
             <FormLabel htmlFor='filter-input'>Filter Values</FormLabel>
