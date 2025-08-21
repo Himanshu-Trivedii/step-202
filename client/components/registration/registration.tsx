@@ -102,6 +102,13 @@ interface OrganizationData {
 }
 
 export default function RegistrationStepperModal() {
+  // CSS to hide scrollbar
+  const hideScrollbarStyle = `
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  `;
+
   const router = useRouter();
   const { setSelectedBusiness, setBusinesses } = useBusinessStore();
 
