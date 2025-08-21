@@ -1,9 +1,595 @@
-import React from 'react';
-import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-// Registration Modal Styles
+export const containerStyle = css`
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, rgb(192, 132, 252), rgb(96, 165, 250), rgb(34, 211, 238));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  @media (min-width: 640px) {
+    padding: 32px;
+  }
+`;
+
+export const mainContainerStyle = css`
+  width: 100%;
+  max-width: 1400px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+`;
+
+export const flexContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  min-height: 750px;
+  margin-left: -1px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+`;
+
+export const logoStyle = css`
+  display: block;
+  width: 133px;
+  height: 160px;
+`;
+
+export const formSectionStyle = css`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  @media (min-width: 640px) {
+    padding: 32px;
+  }
+`;
+
+export const formWrapperStyle = css`
+  width: 100%;
+  max-width: 448px;
+`;
+
+export const illustrationSectionStyle = css`
+  flex: 1;
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+`;
+
+export const mobileHintStyle = css`
+  background: linear-gradient(to bottom right, rgb(17, 24, 39), rgb(31, 41, 55));
+  padding: 24px;
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const mobileHintContentStyle = css`
+  color: white;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: rgb(209, 213, 219);
+    font-size: 14px;
+  }
+`;
+
+// LOGIN
+
+
+export const loginContainerStyle = css`
+  width: 100%;
+  max-width: 384px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 640px) {
+    gap: 24px;
+  }
+`;
+
+export const loginHeaderStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const loginTitleStyle = css`
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(17, 24, 39);
+  line-height: 1.2;
+  margin-right: -1px;
+
+  @media (min-width: 640px) {
+    font-size: 30px;
+  }
+`;
+
+export const loginSubtitleStyle = css`
+  color: rgb(75, 85, 99);
+  font-size: 14px;
+
+  @media (min-width: 640px) {
+    font-size: 16px;
+  }
+`;
+
+export const loginFormStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+`;
+
+export const loginInputGroupStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const loginInputStyle = css`
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgb(229, 231, 235);
+  background: rgb(249, 250, 251);
+  font-size: 14px;
+  transition: all 0.2s;
+
+  &:focus {
+    outline: none;
+    background: white;
+    border-color: rgb(156, 163, 175);
+  }
+
+  @media (min-width: 640px) {
+    height: 48px;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+`;
+
+export const loginPasswordGroupStyle = css`
+  position: relative;
+`;
+
+export const loginPasswordInputStyle = css`
+  ${loginInputStyle}
+  padding-right: 40px;
+
+  @media (min-width: 640px) {
+    padding-right: 48px;
+  }
+`;
+
+export const loginPasswordToggleStyle = css`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgb(156, 163, 175);
+  cursor: pointer;
+  padding: 4px;
+
+  &:hover {
+    color: rgb(75, 85, 99);
+  }
+
+  @media (min-width: 640px) {
+    right: 12px;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+
+    @media (min-width: 640px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+`;
+
+export const loginForgotPasswordStyle = css`
+  text-align: right;
+  
+  a {
+    font-size: 14px;
+    color: rgb(75, 85, 99);
+    text-decoration: none;
+
+    &:hover {
+      color: rgb(17, 24, 39);
+    }
+  }
+`;
+
+export const loginSubmitButtonStyle = css`
+  width: 100%;
+  height: 40px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: rgb(31, 41, 55);
+  }
+
+  @media (min-width: 640px) {
+    height: 48px;
+    font-size: 16px;
+  }
+`;
+
+export const loginSignUpLinkStyle = css`
+  text-align: center;
+  font-size: 14px;
+  color: rgb(75, 85, 99);
+  margin-top: 24px;
+
+  button {
+    color: black;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+export const loginOverlayStyle = css`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Make sure it's on top */
+`;
+
+export const loginModalWrapper = css`
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+`;
+
+
+// signup 
+
+
+export const signupContainerStyle = css`
+  width: 100%;
+  max-width: 384px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 640px) {
+    gap: 24px;
+  }
+`;
+
+export const signupHeaderStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const signupTitleStyle = css`
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(17, 24, 39);
+  line-height: 1.2;
+  margin-right: -1px;
+
+  @media (min-width: 640px) {
+    font-size: 30px;
+  }
+`;
+
+export const signupSubtitleStyle = css`
+  color: rgb(75, 85, 99);
+  font-size: 14px;
+
+  @media (min-width: 640px) {
+    font-size: 16px;
+  }
+`;
+
+export const signupFormStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+`;
+
+export const signupInputGroupStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const signupInputStyle = css`
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgb(229, 231, 235);
+  background: rgb(249, 250, 251);
+  font-size: 14px;
+  transition: all 0.2s;
+
+  &:focus {
+    outline: none;
+    background: white;
+    border-color: rgb(156, 163, 175);
+  }
+
+  @media (min-width: 640px) {
+    height: 48px;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+`;
+
+export const signupPasswordGroupStyle = css`
+  position: relative;
+`;
+
+export const signupPasswordInputStyle = css`
+  ${signupInputStyle}
+  padding-right: 40px;
+
+  @media (min-width: 640px) {
+    padding-right: 48px;
+  }
+`;
+
+export const signupPasswordToggleStyle = css`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgb(156, 163, 175);
+  cursor: pointer;
+  padding: 4px;
+
+  &:hover {
+    color: rgb(75, 85, 99);
+  }
+
+  @media (min-width: 640px) {
+    right: 12px;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+
+    @media (min-width: 640px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+`;
+
+export const signupSubmitButtonStyle = css`
+  width: 100%;
+  height: 40px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: rgb(31, 41, 55);
+  }
+
+  @media (min-width: 640px) {
+    height: 48px;
+    font-size: 16px;
+  }
+`;
+
+export const signupSignInLinkStyle = css`
+  text-align: center;
+  font-size: 14px;
+  color: rgb(75, 85, 99);
+  margin-top: 24px;
+
+  button {
+    color: black;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+ // Vector
+
+
+export const vectorContainerStyle = css`
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 32px;
+  overflow: hidden;
+  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F03b034723f4143d6871d381f98b45e22%2Ff21d279c8bc04f039d5ad8d76e1a9820?format=webp&width=800');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
+export const vectorOverlayStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+`;
+
+export const vectorContentStyle = css`
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 448px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const vectorTitleStyle = css`
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.33;
+`;
+
+export const vectorDescriptionStyle = css`
+  color: rgb(229, 231, 235);
+  font-size: 14px;
+  line-height: 1.64;
+
+  h3 {
+    margin: 0;
+
+    strong {
+      font-weight: 700;
+
+      span {
+        display: block;
+      }
+    }
+  }
+`;
+
+
+// Logout
+
+interface Theme {
+  spacing: string[];
+  borderRadius: { md: string };
+  colors: {
+    border: string;
+    foreground: string;
+    muted: string;
+    destructive: string;
+    destructiveForeground: string;
+    mutedForeground: string;
+  };
+}
+
+export const CancelButton = styled.button<{ theme: Theme; disabled?: boolean }>`
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.foreground};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  opacity: ${({ disabled }) => disabled ? 0.5 : 1};
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.muted};
+  }
+`;
+
+export const LogoutButton = styled.button<{ theme: Theme; disabled?: boolean }>`
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  border: none;
+  background-color: ${({ theme }) => theme.colors.destructive};
+  color: ${({ theme }) => theme.colors.destructiveForeground};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  opacity: ${({ disabled }) => disabled ? 0.8 : 1};
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing[2]};
+
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.destructive}dd;
+  }
+`;
+
+export const LogoutText = styled.p<{ theme: Theme }>`
+  color: ${({ theme }) => theme.colors.mutedForeground};
+  margin: 0 0 ${({ theme }) => theme.spacing[6]} 0;
+  font-size: 14px;
+  line-height: 1.5;
+`;
+
+export const LoadingSpinner = styled.svg<{ theme: Theme }>`
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+// Registration
+
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
@@ -264,6 +850,61 @@ export const HelpText = styled.p`
   margin: 0;
 `;
 
+export const TableHeader = styled.div`
+  margin-bottom: 1rem;
+`;
+
+export const TableHeaderRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 0.75fr 0.5fr 0.5fr 0.25fr;
+  gap: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+`;
+
+export const TableContent = styled.div`
+  max-height: 24rem;
+  overflow-y: auto;
+`;
+
+export const TableRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 0.75fr 0.5fr 0.5fr 0.25fr;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+export const Switch = styled.div<{ checked: boolean }>`
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: ${props => props.checked ? '#2563eb' : '#d1d5db'};
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: ${props => props.checked ? '18px' : '2px'};
+    width: 1.25rem;
+    height: 1.25rem;
+    background: white;
+    border-radius: 50%;
+    transition: left 0.2s ease;
+  }
+`;
+
+export const SwitchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Button = styled.button<{ variant?: 'primary' | 'secondary' | 'ghost'; disabled?: boolean }>`
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
@@ -382,268 +1023,4 @@ export const CompletionTitle = styled.h3`
 export const CompletionText = styled.p`
   color: #6b7280;
   margin: 0;
-`;
-
-// Column Config Form Styles
-export const ColumnConfigFormContainer = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-`;
-
-export const FormRow = styled.div`
-  display: flex;
-  gap: 16px;
-  align-items: end;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-`;
-
-export const FormGroupBase = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 140px;
-  flex: 1;
-`;
-
-export const FormGroupToggle = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: auto;
-  flex: 0 0 auto;
-  margin-top: 24px;
-`;
-
-export const FormLabel = styled.label`
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 6px;
-  display: block;
-`;
-
-export const FormInput = styled.input`
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #ffffff;
-  transition: all 0.2s ease;
-  outline: none;
-
-  &:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-
-  &::placeholder {
-    color: #9ca3af;
-  }
-`;
-
-export const FormSelect = styled.select`
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 8px center;
-  background-repeat: no-repeat;
-  background-size: 16px;
-  padding-right: 36px;
-  appearance: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  outline: none;
-
-  &:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-`;
-
-export const FilterSection = styled.div`
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f9fafb;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-`;
-
-export const FilterInputGroup = styled.div`
-  margin-bottom: 16px;
-`;
-
-export const FilterTags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-`;
-
-export const FilterTag = styled.span`
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  background-color: #3b82f6;
-  color: white;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-`;
-
-export const TagRemove = styled.button`
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 0;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-`;
-
-// Responsive versions
-export const ResponsiveFormRow = styled(FormRow)`
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: stretch;
-  }
-`;
-
-export const ResponsiveFormGroup = styled(FormGroupBase)`
-  @media (max-width: 768px) {
-    min-width: auto;
-  }
-`;
-
-export const ResponsiveFormGroupToggle = styled(FormGroupToggle)`
-  @media (max-width: 768px) {
-    margin-top: 0;
-    align-items: flex-start;
-  }
-`;
-
-export const ResponsiveColumnConfigFormContainer = styled(ColumnConfigFormContainer)`
-  @media (max-width: 768px) {
-    padding: 0 16px;
-  }
-`;
-
-export const ResponsiveFilterTags = styled(FilterTags)`
-  @media (max-width: 480px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-`;
-
-export const ResponsiveFilterTag = styled(FilterTag)`
-  @media (max-width: 480px) {
-    width: 100%;
-    justify-content: space-between;
-  }
-`;
-
-// Toggle Switch Component
-export const ToggleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-`;
-
-export const ToggleLabel = styled.label`
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-export const ToggleInput = styled.input`
-  display: none;
-`;
-
-export const ToggleSlider = styled.div<{ checked: boolean }>`
-  position: relative;
-  width: 44px;
-  height: 24px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  background-color: ${props => props.checked ? '#3b82f6' : '#d1d5db'};
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: ${props => props.checked ? '22px' : '2px'};
-    width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    transition: left 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-// Toggle Switch component as styled component
-interface ToggleSwitchProps {
-  id: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  label: string;
-}
-
-export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ id, checked, onChange, label }) => {
-  return (
-    <ToggleContainer>
-      <ToggleLabel htmlFor={id}>
-        <ToggleInput
-          id={id}
-          type="checkbox"
-          checked={checked}
-          onChange={(e) => onChange(e.target.checked)}
-        />
-        <ToggleSlider checked={checked} />
-        {label}
-      </ToggleLabel>
-    </ToggleContainer>
-  );
-};
-
-// Shimmer animation
-const shimmerAnimation = keyframes`
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
-`;
-
-export const ShimmerBlock = styled.div<{ width?: string; height?: string }>`
-  border-radius: 8px;
-  width: ${(props) => props.width || '100%'};
-  height: ${(props) => props.height || '40px'};
-  background: linear-gradient(
-    90deg,
-    #f3f3f3 25%,
-    #e0e0e0 50%,
-    #f3f3f3 75%
-  );
-  background-size: 200% 100%;
-  animation: ${shimmerAnimation} 1.5s infinite linear;
 `;
