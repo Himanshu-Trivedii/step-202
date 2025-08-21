@@ -65,6 +65,8 @@ interface ColumnDefinition {
   dataType: string;
   hide: boolean;
   filterColumns: boolean;
+  searchable: boolean;
+  filterValues: string[];
 }
 
 interface RegistrationStepperModalRequest {
