@@ -82,11 +82,11 @@ export default function RegistrationStepperModal() {
   const [columns, setColumns] = useState<ColumnDefinition[]>([
     {
       id: "1",
-      name: "",
-      placeholder: "Enter Column Name",
-      dataType: "Text",
-      hide: false,
-      filterColumns: false,
+      label: "",
+      columnName: "",
+      columnType: "STRING",
+      hidden: false,
+      filterable: false,
       searchable: false,
       filterValues: [],
     },
