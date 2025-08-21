@@ -128,7 +128,6 @@ export default function RegistrationStepperModal() {
     },
   ]);
 
-  const [expandedFilterId, setExpandedFilterId] = useState<string | null>(null);
 
   const steps = [
     {
@@ -171,8 +170,6 @@ export default function RegistrationStepperModal() {
       filterValues: [],
     };
     setColumns([...columns, newColumn]);
-    // Collapse all filters when adding a new column for smooth UX
-    setExpandedFilterId(null);
   };
 
   const updateColumn = (id: string, updates: Partial<ColumnConfig>) => {
@@ -424,53 +421,66 @@ export default function RegistrationStepperModal() {
                       opacity: { duration: 0.2 },
                     }}
                   >
-                    <div style={{ maxHeight: "400px", overflowY: "auto", paddingRight: "8px" }}>
-                      {columns.map((column, index) => (
-                        <div key={column.id} style={{ marginBottom: "24px", padding: "20px", border: "1px solid #e5e7eb", borderRadius: "12px", backgroundColor: "#f9fafb" }}>
-                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                            <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "600", color: "#374151" }}>
-                              Column {index + 1}
-                            </h3>
-                            {columns.length > 1 && (
-                              <button
-                                onClick={() => removeColumn(column.id)}
-                                style={{
-                                  background: "none",
-                                  border: "none",
-                                  color: "#ef4444",
-                                  cursor: "pointer",
-                                  padding: "4px",
-                                  borderRadius: "4px"
-                                }}
-                              >
-                                <X size={16} />
-                              </button>
-                            )}
-                          </div>
-                          <ColumnConfigForm
-                            initialConfig={{
-                              label: column.label,
-                              columnName: column.columnName,
-                              columnType: column.columnType,
-                              filterable: column.filterable,
-                              hidden: column.hidden,
-                              searchable: column.searchable,
-                              filterValues: column.filterValues,
-                            }}
-                            columnTypes={columnTypes}
-                            onConfigChange={(config) => updateColumn(column.id, config)}
-                            isEdit={false}
-                            isFilterExpanded={expandedFilterId === column.id}
-                            onFilterToggle={() => setExpandedFilterId(expandedFilterId === column.id ? null : column.id)}
-                          />
-                        </div>
-                      ))}
-
-                      <div style={{ marginTop: "1.5rem" }}>
+                    <div style={{ position: "relative" }}>
+                      {/* Fixed Add Column Button */}
+                      <div style={{
+                        position: "sticky",
+                        top: 0,
+                        right: 0,
+                        zIndex: 10,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginBottom: "16px",
+                        backgroundColor: "white",
+                        paddingBottom: "8px",
+                        borderBottom: "1px solid #e5e7eb"
+                      }}>
                         <Button variant="secondary" onClick={addColumn}>
                           <Plus size={16} />
                           Add Column
                         </Button>
+                      </div>
+
+                      {/* Scrollable Columns Container */}
+                      <div style={{ maxHeight: "400px", overflowY: "auto", paddingRight: "8px" }}>
+                        {columns.map((column, index) => (
+                          <div key={column.id} style={{ marginBottom: "24px", padding: "20px", border: "1px solid #e5e7eb", borderRadius: "12px", backgroundColor: "#f9fafb" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+                              <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "600", color: "#374151" }}>
+                                Column {index + 1}
+                              </h3>
+                              {columns.length > 1 && (
+                                <button
+                                  onClick={() => removeColumn(column.id)}
+                                  style={{
+                                    background: "none",
+                                    border: "none",
+                                    color: "#ef4444",
+                                    cursor: "pointer",
+                                    padding: "4px",
+                                    borderRadius: "4px"
+                                  }}
+                                >
+                                  <X size={16} />
+                                </button>
+                              )}
+                            </div>
+                            <ColumnConfigForm
+                              initialConfig={{
+                                label: column.label,
+                                columnName: column.columnName,
+                                columnType: column.columnType,
+                                filterable: column.filterable,
+                                hidden: column.hidden,
+                                searchable: column.searchable,
+                                filterValues: column.filterValues,
+                              }}
+                              columnTypes={columnTypes}
+                              onConfigChange={(config) => updateColumn(column.id, config)}
+                              isEdit={false}
+                            />
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </motion.div>
