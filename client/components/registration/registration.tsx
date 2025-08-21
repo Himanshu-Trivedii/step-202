@@ -494,7 +494,7 @@ export default function RegistrationStepperModal() {
                       <div style={{
                         maxHeight: "400px",
                         overflowY: "auto",
-                        padding: "0 8px 8px 0",
+                        padding: "0 8px 0 0",
                         background: "linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)",
                         borderRadius: "8px",
                         border: "1px solid #f1f5f9"
