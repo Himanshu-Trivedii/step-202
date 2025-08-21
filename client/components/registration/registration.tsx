@@ -148,6 +148,8 @@ export default function RegistrationStepperModal() {
       dataType: "",
       hide: false,
       filterColumns: false,
+      searchable: false,
+      filterValues: [],
     };
     setColumns([...columns, newColumn]);
   };
