@@ -107,7 +107,7 @@ export default function RegistrationStepperModal() {
     },
   ];
 
-  const columnTypes = [
+  const columnTypes: LabelValue[] = [
     { label: "Text", value: "STRING" },
     { label: "Number", value: "NUMBER" },
     { label: "Timestamp", value: "TIMESTAMP" },
