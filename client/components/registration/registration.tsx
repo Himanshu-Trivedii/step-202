@@ -380,42 +380,42 @@ export default function RegistrationStepperModal() {
                       opacity: { duration: 0.2 },
                     }}
                   >
-                    <ResponsiveColumnConfigFormContainer>
-                      {columns.map((column) => (
-                        <div key={column.id} style={{ marginBottom: "24px" }}>
-                          <ColumnConfigRow
-                            config={{
-                              label: column.name,
-                              columnName: column.name,
-                              columnType: column.dataType as any,
-                              filterable: column.filterColumns,
-                              hidden: column.hide,
+                    <div>
+                      {columns.map((column, index) => (
+                        <div key={column.id} style={{ marginBottom: "24px", padding: "20px", border: "1px solid #e5e7eb", borderRadius: "12px", backgroundColor: "#f9fafb" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+                            <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "600", color: "#374151" }}>
+                              Column {index + 1}
+                            </h3>
+                            {columns.length > 1 && (
+                              <button
+                                onClick={() => removeColumn(column.id)}
+                                style={{
+                                  background: "none",
+                                  border: "none",
+                                  color: "#ef4444",
+                                  cursor: "pointer",
+                                  padding: "4px",
+                                  borderRadius: "4px"
+                                }}
+                              >
+                                <X size={16} />
+                              </button>
+                            )}
+                          </div>
+                          <ColumnConfigForm
+                            initialConfig={{
+                              label: column.label,
+                              columnName: column.columnName,
+                              columnType: column.columnType,
+                              filterable: column.filterable,
+                              hidden: column.hidden,
                               searchable: column.searchable,
                               filterValues: column.filterValues,
                             }}
                             columnTypes={columnTypes}
-                            updateConfig={(updates) => {
-                              if (updates.label !== undefined) {
-                                updateColumn(column.id, "name", updates.label);
-                              }
-                              if (updates.columnType !== undefined) {
-                                updateColumn(column.id, "dataType", updates.columnType);
-                              }
-                              if (updates.filterable !== undefined) {
-                                updateColumn(column.id, "filterColumns", updates.filterable);
-                              }
-                              if (updates.hidden !== undefined) {
-                                updateColumn(column.id, "hide", updates.hidden);
-                              }
-                              if (updates.searchable !== undefined) {
-                                updateColumn(column.id, "searchable", updates.searchable);
-                              }
-                              if (updates.filterValues !== undefined) {
-                                updateColumn(column.id, "filterValues", updates.filterValues);
-                              }
-                            }}
+                            onConfigChange={(config) => updateColumn(column.id, config)}
                             isEdit={false}
-                            onRemove={columns.length > 1 ? () => removeColumn(column.id) : undefined}
                           />
                         </div>
                       ))}
@@ -426,7 +426,7 @@ export default function RegistrationStepperModal() {
                           Add Column
                         </Button>
                       </div>
-                    </ResponsiveColumnConfigFormContainer>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
