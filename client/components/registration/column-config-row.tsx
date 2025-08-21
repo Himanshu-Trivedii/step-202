@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import {
   ResponsiveFormRow,
   ResponsiveFormGroup,
@@ -8,6 +8,11 @@ import {
   FormSelect,
   ToggleSwitch,
   RemoveButton,
+  FilterSection,
+  FilterInputGroup,
+  ResponsiveFilterTags,
+  ResponsiveFilterTag,
+  TagRemove,
 } from './style';
 import { X } from 'lucide-react';
 
