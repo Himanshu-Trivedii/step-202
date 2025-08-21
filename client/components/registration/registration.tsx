@@ -41,22 +41,10 @@ import {
   CompletionIcon,
   CompletionTitle,
   CompletionText,
-  // Column Config Components
-  ResponsiveColumnConfigFormContainer,
-  ResponsiveFormRow,
-  ResponsiveFormGroup,
-  ResponsiveFormGroupToggle,
-  FormLabel,
-  FormInput,
-  FormSelect,
-  FilterSection,
-  FilterInputGroup,
-  ResponsiveFilterTags,
-  ResponsiveFilterTag,
-  TagRemove,
-  ShimmerBlock,
 } from "./style";
-import { ColumnConfigRow } from "./column-config-row";
+// Import reusable column config components
+import { ColumnConfigForm } from "../column-config";
+import { ColumnConfig, LabelValue } from "../column-config/types";
 
 interface ColumnDefinition {
   id: string;
