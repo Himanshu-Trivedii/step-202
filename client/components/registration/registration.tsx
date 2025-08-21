@@ -128,6 +128,8 @@ export default function RegistrationStepperModal() {
     },
   ]);
 
+  const [expandedFilterId, setExpandedFilterId] = useState<string | null>(null);
+
   const steps = [
     {
       id: 1,
@@ -169,6 +171,8 @@ export default function RegistrationStepperModal() {
       filterValues: [],
     };
     setColumns([...columns, newColumn]);
+    // Collapse all filters when adding a new column for smooth UX
+    setExpandedFilterId(null);
   };
 
   const updateColumn = (id: string, updates: Partial<ColumnConfig>) => {
@@ -420,7 +424,7 @@ export default function RegistrationStepperModal() {
                       opacity: { duration: 0.2 },
                     }}
                   >
-                    <div>
+                    <div style={{ maxHeight: "400px", overflowY: "auto", paddingRight: "8px" }}>
                       {columns.map((column, index) => (
                         <div key={column.id} style={{ marginBottom: "24px", padding: "20px", border: "1px solid #e5e7eb", borderRadius: "12px", backgroundColor: "#f9fafb" }}>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
@@ -456,6 +460,8 @@ export default function RegistrationStepperModal() {
                             columnTypes={columnTypes}
                             onConfigChange={(config) => updateColumn(column.id, config)}
                             isEdit={false}
+                            isFilterExpanded={expandedFilterId === column.id}
+                            onFilterToggle={() => setExpandedFilterId(expandedFilterId === column.id ? null : column.id)}
                           />
                         </div>
                       ))}
