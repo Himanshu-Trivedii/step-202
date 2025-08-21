@@ -124,11 +124,11 @@ export default function RegistrationStepperModal() {
   const addColumn = () => {
     const newColumn: ColumnDefinition = {
       id: Date.now().toString(),
-      name: "",
-      placeholder: "Enter Column Name",
-      dataType: "",
-      hide: false,
-      filterColumns: false,
+      label: "",
+      columnName: "",
+      columnType: "STRING",
+      hidden: false,
+      filterable: false,
       searchable: false,
       filterValues: [],
     };
