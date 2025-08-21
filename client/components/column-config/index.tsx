@@ -40,7 +40,7 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
 
   const [filterInput, setFilterInput] = useState('');
 
-  // Sync with initialConfig changes (for new columns or external updates)
+  // Only sync initialConfig on mount to avoid overwriting user input
   useEffect(() => {
     setConfig({
       label: initialConfig?.label || '',
@@ -51,7 +51,7 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
       searchable: initialConfig?.searchable || false,
       filterValues: initialConfig?.filterValues || []
     });
-  }, [initialConfig]);
+  }, [columnId]); // Only re-sync when columnId changes (new column)
 
   const updateConfig = (updates: Partial<ColumnConfig>) => {
     const newConfig = { ...config, ...updates };
