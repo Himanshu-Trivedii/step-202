@@ -63,6 +63,38 @@ interface RegistrationStepperModalRequest {
   }[];
 }
 
+interface LoginResp {
+  respMessage: string;
+  businesses: any[];
+}
+
+// Mock API function - replace with actual import
+const srGetRegistrationData = async (payload: RegistrationStepperModalRequest): Promise<LoginResp> => {
+  // Simulate API call
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        respMessage: "Registration successful!",
+        businesses: [{ id: 1, name: payload.businessName }]
+      });
+    }, 1000);
+  });
+};
+
+// Mock business store functions - replace with actual store imports
+const useBusinessStore = () => ({
+  setSelectedBusiness: (business: any) => console.log("Selected business:", business),
+  setBusinesses: (businesses: any[]) => console.log("Set businesses:", businesses),
+});
+
+// Mock router - replace with actual router import
+const useRouter = () => ({
+  push: (path: string) => {
+    console.log("Navigate to:", path);
+    // In a real app, this would navigate to the home page
+  }
+});
+
 interface OrganizationData {
   organizationName: string;
   organizationId: string;
