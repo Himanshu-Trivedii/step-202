@@ -525,20 +525,47 @@ export default function RegistrationStepperModal() {
                                  boxShadow: "0 2px 8px -2px rgba(0, 0, 0, 0.08)",
                                  position: "relative"
                                }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                              <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "600", color: "#374151" }}>
+                            <div style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              marginBottom: "20px",
+                              paddingBottom: "12px",
+                              borderBottom: "1px solid #f1f5f9"
+                            }}>
+                              <h3 style={{
+                                margin: 0,
+                                fontSize: "18px",
+                                fontWeight: "600",
+                                color: "#1e293b",
+                                background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent"
+                              }}>
                                 Column {index + 1}
                               </h3>
                               {columns.length > 1 && (
                                 <button
                                   onClick={() => removeColumn(column.id)}
                                   style={{
-                                    background: "none",
-                                    border: "none",
-                                    color: "#ef4444",
+                                    background: "linear-gradient(135deg, #fee2e2, #fef2f2)",
+                                    border: "1px solid #fecaca",
+                                    color: "#dc2626",
                                     cursor: "pointer",
-                                    padding: "4px",
-                                    borderRadius: "4px"
+                                    padding: "8px",
+                                    borderRadius: "8px",
+                                    transition: "all 0.2s ease",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center"
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = "linear-gradient(135deg, #fecaca, #fee2e2)";
+                                    e.currentTarget.style.transform = "scale(1.05)";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = "linear-gradient(135deg, #fee2e2, #fef2f2)";
+                                    e.currentTarget.style.transform = "scale(1)";
                                   }}
                                 >
                                   <X size={16} />
