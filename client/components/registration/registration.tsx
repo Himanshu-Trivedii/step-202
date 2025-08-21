@@ -173,7 +173,6 @@ export default function RegistrationStepperModal() {
   };
 
   const updateColumn = (id: string, updates: Partial<ColumnConfig>) => {
-    console.log('updateColumn called:', { id, updates });
     setColumns(
       columns.map((col) => (col.id === id ? { ...col, ...updates } : col))
     );
