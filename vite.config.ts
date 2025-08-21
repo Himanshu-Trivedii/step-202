@@ -16,7 +16,15 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist/spa",
   },
-  plugins: [react(), expressPlugin()],
+  plugins: [
+    react({
+      jsxImportSource: "@emotion/react",
+      babel: {
+        plugins: ["@emotion/babel-plugin"],
+      },
+    }),
+    expressPlugin(),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client"),
