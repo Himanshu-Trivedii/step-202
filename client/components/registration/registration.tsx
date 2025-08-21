@@ -102,6 +102,9 @@ interface OrganizationData {
 }
 
 export default function RegistrationStepperModal() {
+  const router = useRouter();
+  const { setSelectedBusiness, setBusinesses } = useBusinessStore();
+
   const [currentStep, setCurrentStep] = useState(1);
   const [isCompleted, setIsCompleted] = useState(false);
   const [direction, setDirection] = useState(0); // 1 for next, -1 for back
