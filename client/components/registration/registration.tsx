@@ -478,6 +478,7 @@ export default function RegistrationStepperModal() {
                               columnTypes={columnTypes}
                               onConfigChange={(config) => updateColumn(column.id, config)}
                               isEdit={false}
+                              columnId={column.id}
                             />
                           </div>
                         ))}
