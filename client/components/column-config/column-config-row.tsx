@@ -63,10 +63,6 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
               updateConfig({ filterable: checked, filterValues: [] })
             } else {
               updateConfig({ filterable: checked })
-              onFilterToggle?.()
-            }
-            if (!checked) {
-              updateConfig({ filterable: checked })
             }
           }}
           label="Filterable"
