@@ -23,6 +23,7 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
   columnTypes,
   updateConfig,
   isEdit,
+  columnId,
 }) => {
   return (
     <ResponsiveFormRow>
