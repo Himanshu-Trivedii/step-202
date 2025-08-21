@@ -523,7 +523,7 @@ export default function RegistrationStepperModal() {
                           <div key={column.id}
                                className="column-card animate-fade-in"
                                style={{
-                                 marginBottom: "20px",
+                                 marginBottom: index === columns.length - 1 ? "0px" : "20px",
                                  padding: "24px",
                                  border: "1px solid #e2e8f0",
                                  borderRadius: "16px",
