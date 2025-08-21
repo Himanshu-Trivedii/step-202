@@ -28,9 +28,9 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
   return (
     <ResponsiveFormRow>
       <ResponsiveFormGroup>
-        <FormLabel htmlFor='column-name'>Column Name</FormLabel>
+        <FormLabel htmlFor={`column-name-${columnId}`}>Column Name</FormLabel>
         <FormInput
-          id='column-name'
+          id={`column-name-${columnId}`}
           type='text'
           value={(config?.label || '')}
           onChange={(e) => updateConfig({ label: e.target.value })}
@@ -39,9 +39,9 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
       </ResponsiveFormGroup>
 
       <ResponsiveFormGroup>
-        <FormLabel htmlFor='column-type'>Column Type</FormLabel>
+        <FormLabel htmlFor={`column-type-${columnId}`}>Column Type</FormLabel>
         <FormSelect
-          id='column-type'
+          id={`column-type-${columnId}`}
           value={(config?.columnType || '')}
           onChange={(e) =>
             updateConfig({ columnType: e.target.value as ColumnConfig['columnType'] })
@@ -58,7 +58,7 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
 
       <ResponsiveFormGroupToggle>
         <Toggle
-          id='is-filterable'
+          id={`is-filterable-${columnId}`}
           checked={(config?.filterable || false)}
           onChange={(checked) => {
             if (!checked) {
@@ -73,7 +73,7 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
 
       <ResponsiveFormGroupToggle>
         <Toggle
-          id='is-hidden'
+          id={`is-hidden-${columnId}`}
           checked={(config?.hidden || false)}
           onChange={(checked) => updateConfig({ hidden: checked })}
           label="Hidden"
@@ -82,7 +82,7 @@ export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
 
       <ResponsiveFormGroupToggle>
         <Toggle
-          id='is-searchable'
+          id={`is-searchable-${columnId}`}
           checked={(config?.searchable || false)}
           onChange={(checked) => updateConfig({ searchable: checked })}
           label="Searchable"
