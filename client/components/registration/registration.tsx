@@ -106,6 +106,8 @@ export default function RegistrationStepperModal() {
       dataType: "Text",
       hide: false,
       filterColumns: false,
+      searchable: false,
+      filterValues: [],
     },
   ]);
 
