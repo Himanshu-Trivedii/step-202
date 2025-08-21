@@ -210,14 +210,18 @@ export default function RegistrationStepperModal() {
       })),
     };
 
-    // Mock API call for now
-    console.log("Registration payload:", payload);
-    setIsCompleted(true);
+    srGetRegistrationData(payload)
+      .then((resp: LoginResp) => {
+        toast.success(resp?.respMessage);
+        setIsCompleted(true);
+        setSelectedBusiness(resp?.businesses[0]);
+        setBusinesses(resp?.businesses);
 
-    setTimeout(() => {
-      // router.push('/home');
-      console.log("Redirecting to home...");
-    }, 1000);
+        setTimeout(() => {
+          router.push('/home');
+        }, 1000);
+      })
+      .catch((err: any) => toast.error(err.errorMsg));
   };
 
   const isStep1Valid =
