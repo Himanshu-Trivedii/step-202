@@ -490,35 +490,31 @@ export default function RegistrationStepperModal() {
                     }}
                   >
                     <div style={{ position: "relative" }}>
+                      {/* Fixed Add Column Button - Outside scrollable area */}
+                      <div style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        padding: "0 0 12px 0",
+                        marginBottom: "8px",
+                        borderBottom: "1px solid #e2e8f0"
+                      }}>
+                        <Button variant="secondary" onClick={addColumn}>
+                          <Plus size={16} />
+                          Add Column
+                        </Button>
+                      </div>
+
                       {/* Enhanced Scrollable Columns Container */}
                       <div style={{
                         maxHeight: "400px",
                         overflowY: "auto",
-                        padding: "0 8px 0 0",
+                        padding: "16px 8px 0 0",
                         background: "linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)",
                         borderRadius: "8px",
                         border: "1px solid #f1f5f9"
                       }}
                       className="smooth-scroll-container"
                       >
-                        {/* Enhanced Sticky Add Column Button */}
-                        <div style={{
-                          position: "sticky",
-                          top: 0,
-                          zIndex: 50,
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          padding: "16px 8px 16px 0",
-                          marginBottom: "8px",
-                          borderBottom: "1px solid #e2e8f0",
-                          borderRadius: "8px 8px 0 0"
-                        }}
-                        className="sticky-header">
-                          <Button variant="secondary" onClick={addColumn}>
-                            <Plus size={16} />
-                            Add Column
-                          </Button>
-                        </div>
                         {columns.map((column, index) => (
                           <div key={column.id}
                                className="column-card animate-fade-in"
