@@ -15,6 +15,7 @@ interface ColumnConfigRowProps {
   columnTypes: { label: string; value: string }[];
   updateConfig: (updates: Partial<ColumnConfig>) => void;
   isEdit: boolean;
+  columnId: string;
 }
 
 export const ColumnConfigRow: React.FC<ColumnConfigRowProps> = ({
