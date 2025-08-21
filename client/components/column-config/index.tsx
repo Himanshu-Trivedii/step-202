@@ -18,6 +18,7 @@ interface ColumnConfigFormProps {
   initialConfig?: Partial<ColumnConfig>;
   isEdit?: boolean;
   columnTypes?: LabelValue[];
+  columnId: string;
 }
 
 export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
