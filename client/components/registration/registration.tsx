@@ -425,7 +425,15 @@ export default function RegistrationStepperModal() {
                   >
                     <div style={{ position: "relative" }}>
                       {/* Scrollable Columns Container */}
-                      <div style={{ maxHeight: "400px", overflowY: "auto", paddingRight: "8px" }}>
+                      <div style={{
+                        maxHeight: "400px",
+                        overflowY: "auto",
+                        paddingRight: "8px",
+                        scrollbarWidth: "none", /* Firefox */
+                        msOverflowStyle: "none", /* IE and Edge */
+                      }}
+                      className="hide-scrollbar"
+                      >
                         {/* Fixed Add Column Button - positioned at top of scrollable area */}
                         <div style={{
                           position: "sticky",
