@@ -236,6 +236,9 @@ export default function RegistrationStepperModal() {
     columns.every((col) => col.label && col.label.trim() !== '' && col.columnType && col.columnType.trim() !== '');
 
   // Debug logging
+  console.log('Current step:', currentStep);
+  console.log('Steps length:', steps.length);
+  console.log('Show Create Table button:', currentStep >= steps.length);
   console.log('Columns state:', columns);
   console.log('isStep2Valid:', isStep2Valid);
   console.log('Column validation details:', columns.map(col => ({
