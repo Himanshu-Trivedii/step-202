@@ -234,6 +234,17 @@ export default function RegistrationStepperModal() {
     columns.length > 0 &&
     columns.every((col) => col.label && col.label.trim() !== '' && col.columnType && col.columnType.trim() !== '');
 
+  // Debug logging
+  console.log('Columns state:', columns);
+  console.log('isStep2Valid:', isStep2Valid);
+  console.log('Column validation details:', columns.map(col => ({
+    id: col.id,
+    label: col.label,
+    labelValid: col.label && col.label.trim() !== '',
+    columnType: col.columnType,
+    typeValid: col.columnType && col.columnType.trim() !== ''
+  })));
+
   return (
     <Overlay>
       <ModalContainer>
