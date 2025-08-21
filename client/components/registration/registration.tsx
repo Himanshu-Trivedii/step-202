@@ -102,10 +102,61 @@ interface OrganizationData {
 }
 
 export default function RegistrationStepperModal() {
-  // CSS to hide scrollbar
-  const hideScrollbarStyle = `
-    .hide-scrollbar::-webkit-scrollbar {
-      display: none;
+  // Enhanced CSS for smooth scrolling and attractive design
+  const enhancedScrollStyle = `
+    .smooth-scroll-container {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #e5e7eb transparent;
+    }
+
+    .smooth-scroll-container::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .smooth-scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .smooth-scroll-container::-webkit-scrollbar-thumb {
+      background: #e5e7eb;
+      border-radius: 2px;
+      transition: background 0.2s ease;
+    }
+
+    .smooth-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #d1d5db;
+    }
+
+    .column-card {
+      transition: all 0.2s ease;
+      transform: translateY(0);
+    }
+
+    .column-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.15);
+    }
+
+    .sticky-header {
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.95);
+      transition: all 0.2s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 0.3s ease-out;
     }
   `;
 
@@ -243,7 +294,7 @@ export default function RegistrationStepperModal() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: hideScrollbarStyle }} />
+      <style dangerouslySetInnerHTML={{ __html: enhancedScrollStyle }} />
       <Overlay>
       <ModalContainer>
         {isCompleted ? (
@@ -433,36 +484,47 @@ export default function RegistrationStepperModal() {
                     }}
                   >
                     <div style={{ position: "relative" }}>
-                      {/* Scrollable Columns Container */}
+                      {/* Enhanced Scrollable Columns Container */}
                       <div style={{
-                        maxHeight: "400px",
+                        maxHeight: "450px",
                         overflowY: "auto",
-                        paddingRight: "8px",
-                        scrollbarWidth: "none", /* Firefox */
-                        msOverflowStyle: "none", /* IE and Edge */
+                        padding: "0 12px 8px 0",
+                        background: "linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)",
+                        borderRadius: "8px",
+                        border: "1px solid #f1f5f9"
                       }}
-                      className="hide-scrollbar"
+                      className="smooth-scroll-container"
                       >
-                        {/* Fixed Add Column Button - positioned at top of scrollable area */}
+                        {/* Enhanced Sticky Add Column Button */}
                         <div style={{
                           position: "sticky",
                           top: 0,
                           zIndex: 50,
                           display: "flex",
                           justifyContent: "flex-end",
-                          backgroundColor: "white",
-                          paddingTop: "0px",
-                          paddingBottom: "12px",
-                          marginBottom: "12px",
-                          borderBottom: "1px solid #e5e7eb"
-                        }}>
+                          padding: "16px 8px 16px 0",
+                          marginBottom: "8px",
+                          borderBottom: "1px solid #e2e8f0",
+                          borderRadius: "8px 8px 0 0"
+                        }}
+                        className="sticky-header">
                           <Button variant="secondary" onClick={addColumn}>
                             <Plus size={16} />
                             Add Column
                           </Button>
                         </div>
                         {columns.map((column, index) => (
-                          <div key={column.id} style={{ marginBottom: "24px", padding: "20px", border: "1px solid #e5e7eb", borderRadius: "12px", backgroundColor: "#f9fafb" }}>
+                          <div key={column.id}
+                               className="column-card animate-fade-in"
+                               style={{
+                                 marginBottom: "20px",
+                                 padding: "24px",
+                                 border: "1px solid #e2e8f0",
+                                 borderRadius: "16px",
+                                 backgroundColor: "#ffffff",
+                                 boxShadow: "0 2px 8px -2px rgba(0, 0, 0, 0.08)",
+                                 position: "relative"
+                               }}>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                               <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "600", color: "#374151" }}>
                                 Column {index + 1}
