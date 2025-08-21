@@ -40,6 +40,19 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
 
   const [filterInput, setFilterInput] = useState('');
 
+  // Sync with initialConfig changes (for new columns or external updates)
+  useEffect(() => {
+    setConfig({
+      label: initialConfig?.label || '',
+      columnName: initialConfig?.columnName || '',
+      columnType: initialConfig?.columnType || 'STRING',
+      filterable: initialConfig?.filterable || false,
+      hidden: initialConfig?.hidden || false,
+      searchable: initialConfig?.searchable || false,
+      filterValues: initialConfig?.filterValues || []
+    });
+  }, [initialConfig]);
+
   const updateConfig = (updates: Partial<ColumnConfig>) => {
     const newConfig = { ...config, ...updates };
     setConfig(newConfig);
