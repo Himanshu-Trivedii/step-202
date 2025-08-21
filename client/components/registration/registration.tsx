@@ -413,8 +413,8 @@ export default function RegistrationStepperModal() {
                               columnType: column.dataType as any,
                               filterable: column.filterColumns,
                               hidden: column.hide,
-                              searchable: false,
-                              filterValues: [],
+                              searchable: column.searchable,
+                              filterValues: column.filterValues,
                             }}
                             columnTypes={columnTypes}
                             updateConfig={(updates) => {
@@ -429,6 +429,12 @@ export default function RegistrationStepperModal() {
                               }
                               if (updates.hidden !== undefined) {
                                 updateColumn(column.id, "hide", updates.hidden);
+                              }
+                              if (updates.searchable !== undefined) {
+                                updateColumn(column.id, "searchable", updates.searchable);
+                              }
+                              if (updates.filterValues !== undefined) {
+                                updateColumn(column.id, "filterValues", updates.filterValues);
                               }
                             }}
                             isEdit={false}
