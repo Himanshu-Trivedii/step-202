@@ -71,15 +71,16 @@ export const ColumnConfigForm: React.FC<ColumnConfigFormProps> = ({
           columnTypes={columnTypes}
           updateConfig={updateConfig}
           isEdit={((config?.columnName !== '') && isEdit)}
+          columnId={columnId}
         />
       ) : <ShimmerRow /> }
 
       {(config?.filterable || false) && (
         <FilterSection>
           <FilterInputGroup>
-            <FormLabel htmlFor='filter-input'>Filter Values</FormLabel>
+            <FormLabel htmlFor={`filter-input-${columnId}`}>Filter Values</FormLabel>
             <FormInput
-              id='filter-input'
+              id={`filter-input-${columnId}`}
               type='text'
               value={filterInput}
               onChange={(e) => setFilterInput(e.target.value)}
