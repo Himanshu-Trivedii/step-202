@@ -22,6 +22,8 @@ export const ModalContainer = styled.div`
   max-height: 90vh;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ModalHeader = styled.div`
@@ -195,6 +197,9 @@ export const ProgressLine = styled.div<{ isCompleted: boolean }>`
 
 export const Content = styled.div`
   padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 `;
 
 export const FormContainer = styled.div`
@@ -333,6 +338,7 @@ export const Footer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 `;
 
 export const CompletionContainer = styled.div`
