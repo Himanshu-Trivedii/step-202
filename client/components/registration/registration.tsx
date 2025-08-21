@@ -432,9 +432,9 @@ export default function RegistrationStepperModal() {
                         zIndex: 50,
                         display: "flex",
                         justifyContent: "flex-end",
-                        marginBottom: "16px",
+                        marginBottom: "8px",
                         backgroundColor: "white",
-                        paddingBottom: "8px",
+                        paddingBottom: "4px",
                         borderBottom: "1px solid #e5e7eb"
                       }}>
                         <Button variant="secondary" onClick={addColumn}>
