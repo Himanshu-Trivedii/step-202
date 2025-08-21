@@ -309,7 +309,7 @@ export default function RegistrationStepperModal() {
     <>
       <style dangerouslySetInnerHTML={{ __html: enhancedScrollStyle }} />
       <Overlay>
-      <ModalContainer>
+        <ModalContainer className="modal-container-fixed">
         {isCompleted ? (
           <CompletionContainer>
             <CompletionIcon>
